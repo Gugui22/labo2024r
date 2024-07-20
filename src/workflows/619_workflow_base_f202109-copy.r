@@ -269,12 +269,13 @@ TS_strategy_base9 <- function( pinputexps )
     202101, 202012, 202011)
 
 
-  param_local$train$training <- c(202105, 202104, 202103, 202102, 202012, 202011, 202002,
-                                          201912, 201911)
-  param_local$train$validation <- c(202106, 202101, 202001)
-  param_local$train$testing <- c(202107)
+  param_local$train$training <- c(202103, 202102, 202101,
+                                  202012, 202011, 202010, 202009, 202008, 202007)
+  param_local$train$validation <- c(202104)
+  param_local$train$testing <- c(202107, 202106, 202105)
 
-  # Atencion  0.2  de  undersampling de la clase mayoritaria,  los CONTINUA
+  
+    # Atencion  0.2  de  undersampling de la clase mayoritaria,  los CONTINUA
   # 1.0 significa NO undersampling
   param_local$train$undersampling <- 0.2
   param_local$train$clase_minoritaria <- c( "BAJA+1", "BAJA+2")
@@ -430,7 +431,7 @@ wf_septiembre <- function( pnombrewf )
   ts9 <- TS_strategy_base9()
   ht <- HT_tuning_base()
 
-  fm <- FM_final_models_lightgbm( c(ht, ts9), ranks=c(1), qsemillas=5 )
+  fm <- FM_final_models_lightgbm( c(ht, ts9), ranks=c(1), qsemillas=10 )
   SC_scoring( c(fm, ts9) )
   KA_evaluate_kaggle()
 
